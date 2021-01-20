@@ -1,0 +1,421 @@
+[
+  {"year":"2020",
+    "data": [{
+    "name": "北京",
+    "value": 23
+  },{
+    "name": "天津",
+    "value": 6
+  },{
+    "name": "上海",
+    "value": 17
+  },{
+    "name": "广东",
+    "value": 27,
+      "city": [{
+        "name": "广州",
+        "value": 14
+      },{
+        "name": "深圳",
+        "value": 11
+      },{
+        "name": "佛山",
+        "value": 1
+      },{
+        "name": "东莞",
+        "value": 1
+      }]
+  },{
+    "name": "吉林",
+    "value": 5
+  },{
+    "name": "辽宁",
+    "value": 8,
+      "city": [{
+        "name": "大连",
+        "value": 4
+      },{
+        "name": "沈阳",
+        "value": 4
+      }]
+  },{
+    "name": "湖北",
+    "value": 9
+  },{
+    "name": "重庆",
+    "value": 10
+  },{
+    "name": "江苏",
+    "value": 19,
+      "city": [{
+        "name": "南京",
+        "value": 10
+      },{
+        "name": "苏州",
+        "value": 4
+      },{
+        "name": "无锡",
+        "value": 3
+      },{
+        "name": "常州",
+        "value": 1
+      },{
+        "name": "徐州",
+        "value": 1
+      }]
+  },{
+    "name": "四川",
+    "value": 7
+  },{
+      "name": "陕西",
+      "value": 5
+    },{
+    "name": "云南",
+    "value": 5
+  },{
+    "name": "浙江",
+    "value": 9,
+      "city": [{
+        "name": "杭州",
+        "value": 5
+      },{
+        "name": "宁波",
+        "value": 3
+      },{
+        "name": "温州",
+        "value": 1
+      }]
+  },{
+    "name": "黑龙江",
+    "value": 2
+  },{
+    "name": "河南",
+    "value": 5
+  },{
+      "name": "湖南",
+      "value": 6
+  },{
+      "name": "山东",
+      "value": 6,
+      "city": [{
+        "name": "青岛",
+        "value": 4
+      },{
+        "name": "济南",
+        "value": 2
+      }]
+    },{
+      "name": "江西",
+      "value": 2
+    },{
+      "name": "福建",
+      "value": 4,
+      "city": [{
+        "name": "福州",
+        "value": 2
+      },{
+        "name": "厦门",
+        "value": 2
+      }]
+    },{
+      "name": "广西",
+      "value": 4
+    },{
+      "name": "安徽",
+      "value": 3
+    },{
+      "name": "河北",
+      "value": 3
+    },{
+      "name": "贵州",
+      "value": 3
+    },{
+      "name": "甘肃",
+      "value": 3
+    },{
+      "name": "内蒙古",
+      "value": 3
+    },{
+      "name": "台湾",
+      "value": 10,
+      "city": [{
+        "name": "台北",
+        "value": 7
+      },{
+        "name": "高雄",
+        "value": 3
+      }]
+    },{
+      "name": "澳门",
+      "value": 1
+    },{
+      "name": "香港",
+      "value": 11
+    }]},
+  {"year":"2015",
+    "data": [{
+      "name": "北京",
+      "value": 18
+      },{
+        "name": "天津",
+        "value": 4
+      },{
+        "name": "上海",
+        "value": 14
+      },{
+        "name": "广东",
+        "value": 16,
+        "city": [{
+          "name": "广州",
+          "value": 10
+        },{
+          "name": "深圳",
+          "value": 5
+        },{
+          "name": "佛山",
+          "value": 1
+        }]
+      },{
+        "name": "吉林",
+        "value": 2
+      },{
+        "name": "辽宁",
+        "value": 7,
+        "city": [{
+          "name": "大连",
+          "value": 5
+        },{
+          "name": "沈阳",
+          "value": 2
+        }]
+      },{
+        "name": "湖北",
+        "value": 3
+      },{
+        "name": "重庆",
+        "value": 5
+      },{
+        "name": "江苏",
+        "value": 10,
+        "city": [{
+          "name": "南京",
+          "value": 6
+        },{
+          "name": "苏州",
+          "value": 2
+        },{
+          "name": "无锡",
+          "value": 2
+        }]
+      },{
+        "name": "四川",
+        "value": 2
+      },{
+        "name": "陕西",
+        "value": 2
+      },{
+        "name": "云南",
+        "value": 3
+      },{
+        "name": "浙江",
+        "value": 3,
+        "city": [{
+          "name": "杭州",
+          "value": 2
+        },{
+          "name": "宁波",
+          "value": 1
+        }]
+      },{
+        "name": "黑龙江",
+        "value": 1
+      },{
+        "name": "河南",
+        "value": 1
+      },{
+        "name": "湖南",
+        "value": 1
+      },{
+        "name": "山东",
+        "value": 1
+      },{
+        "name": "江西",
+        "value": 1
+      },{
+      "name": "台湾",
+      "value": 10,
+      "city": [{
+        "name": "台北",
+        "value": 9
+      },{
+        "name": "高雄",
+        "value": 2
+      }]
+    },{
+      "name": "香港",
+      "value": 9
+    }
+]},
+  {"year":"2010","data": [{
+    "name": "北京",
+    "value": 14
+  },{
+    "name": "天津",
+    "value": 2
+  },{
+    "name": "上海",
+    "value": 12
+  },{
+    "name": "广东",
+    "value": 13,
+    "city": [{
+      "name": "广州",
+      "value": 8
+    },{
+      "name": "深圳",
+      "value": 4
+    },{
+      "name": "佛山",
+      "value": 1
+    }]
+  },{
+    "name": "吉林",
+    "value": 1
+  },{
+    "name": "辽宁",
+    "value": 2,
+    "city": [{
+      "name": "大连",
+      "value": 1
+    },{
+      "name": "沈阳",
+      "value": 1
+    }]
+  },{
+    "name": "湖北",
+    "value": 1
+  },{
+    "name": "重庆",
+    "value": 1
+  },{
+    "name": "江苏",
+    "value": 2
+  },{
+    "name": "四川",
+    "value": 1
+  },{
+    "name": "台湾",
+    "value": 11,
+    "city": [{
+      "name": "台北",
+      "value": 9
+    },{
+      "name": "高雄",
+      "value": 2
+    }]
+  },{
+    "name": "香港",
+    "value": 9
+  }]
+  },
+  {
+    "year": "2005",
+    "data": [
+      {
+        "name": "北京",
+        "value": 3
+      },
+      {
+        "name": "天津",
+        "value": 1
+      },
+      {
+        "name": "上海",
+        "value": 5
+      },
+      {
+        "name": "广东",
+        "value": 5,
+        "city": [
+          {
+            "name": "广州",
+            "value": 3
+          },
+          {
+            "name": "深圳",
+            "value": 2
+          }
+        ]
+      },
+      {
+        "name": "吉林",
+        "value": 1
+      },
+      {
+        "name": "辽宁",
+        "value": 1
+      },
+      {
+        "name": "湖北",
+        "value": 1
+      },
+      {
+        "name": "重庆",
+        "value": 1
+      },
+      {
+        "name": "江苏",
+        "value": 1
+      },
+      {
+        "name": "台湾",
+        "value": 5
+      },
+      {
+        "name": "香港",
+        "value": 5
+      }
+    ]
+  },
+  {"year":"2000","data": [
+    {
+      "name": "北京",
+      "value": 2
+    },
+    {
+      "name": "天津",
+      "value": 1
+    },
+    {
+      "name": "上海",
+      "value": 3
+    },
+    {
+      "name": "广东",
+      "value": 1
+    },
+    {
+      "name": "台湾",
+      "value": 5
+    },
+    {
+      "name": "香港",
+      "value": 5
+    }
+  ]
+  },
+  {"year":"1990","data": [
+    {
+      "name": "北京",
+      "value": 2
+    },
+    {
+      "name": "天津",
+      "value": 1
+    },
+    {
+      "name": "香港",
+      "value": 4
+    }]
+  }
+]

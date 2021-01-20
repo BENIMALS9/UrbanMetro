@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>深圳地铁数据分析可视化系统</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/SZdata_text.css">
+    <link rel="stylesheet" href="css/foundation-datepicker.css">
+    <link rel="stylesheet" href="css/SZindex.css">
+
+	<meta charset="UTF-8">
+	<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+	<script src="https://unpkg.com/deck.gl@^6.2.0/deckgl.min.js"></script>
+	<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.css">
+	<script src="https://d3js.org/d3.v5.min.js"></script>
+	<style>
+	    .chart_map-overlay {
+	        font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+	        position: absolute;
+	        width: 20%;
+	        top: 60px;
+	        right: 0;
+	        padding: 10px;
+	        z-index: 999;
+	    }
+	    .chart_map-overlay .chart_map-overlay-inner {
+	        background-color: rgba(57, 57, 57, 0.8);
+	        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+	        border-radius: 3px;
+	        padding: 10px;
+	        margin-bottom: 10px;
+	    }
+	    .chart_map-overlay h2 {
+	        line-height: 24px;
+	        display: block;
+	        margin: 0 0 10px;
+	    }
+	    .chart_map-overlay input {
+	        background-color: transparent;
+	        display: inline-block;
+	        width: 100%;
+	        position: relative;
+	        margin: 0;
+	        cursor: ew-resize;
+	    }
+	</style> 
+
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <link rel="stylesheet" href="css/index.css">
+    <![endif]-->
+</head>
+<body>
+
+<!--header开始-->
+
+<!--header结束-->
+
+<!--content开始-->
+<div class="data_content">
+    <div class="data_time" style="width: 100%; height: 100%;">
+        <!--<span style="font-size: 60px;">2020年-->
+        <h1 class="title_year" style="font-size: 60px;">2020年</h1>
+        <h1 style="font-size: 40px;margin-top: 0px;">深圳地铁数据分析可视化系统</h1>
+        <!--<img src="img/data_time.png" alt="" class="fl">
+        <input type="text"  value="" id="demo-1" style="background: #04425f;width: 80px;" placeholder="选择日期">-->
+        <div class="container">
+
+            <div id="prev" class="button prev iconfont icon-zuojiantou"></div>
+            <div id="next" class="button next iconfont icon-zuojiantou"></div>
+            <div class="slide_wrap" >
+                <ul class="slide_items clearfix">
+                    <li class="on">
+                        <!-- <a href="jacascript:;"> -->
+                            <span>2020年</span>
+                            <div id="2020c" class="circle">
+                                <i id="2020"></i>
+                            </div>
+                       <!-- </a> -->
+                    </li>
+                    <li>
+                        <!-- <a href="jacascript:;"> -->
+                            <span>2016年</span>
+                            <div id="2016c" class="circle">
+                                <i id="2016"></i>
+                            </div>
+                        <!-- </a> -->
+                    </li>
+                    <li>
+                        <a href="jacascript:;">
+                            <span>2011年</span>
+                            <div id="2011c" class="circle">
+                                <i id="2011"></i>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="jacascript:;">
+                            <span>2004年</span>
+                            <div id="2004c" class="circle">
+                                <i id="2004"></i>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <button class="btn btn-info btn-lg" style="width: 142px;position: absolute;left: 112%;top: 35%;" onclick="ChinaSystem()">返回</button>
+                <button class="btn btn-info btn-lg" style="position: absolute;left: 112%;top: 95%;" onclick="IndexSystem()">指标展示平台</button>
+            </div>
+
+        </div>
+    </div>
+    <div class="data_info">
+        <div class="info_1 fl">
+            <div class="text_1">
+                <div class="fl">
+                    <img src="img/info_2.png" alt="" class="fl">
+                    <div class="fl">
+                        <p>地铁总里程</p>
+                        <p class="info_text">411</p>
+                    </div>
+                </div>
+                <div class="fl">
+                    <img src="img/info_3.png" alt="" class="fl">
+                    <div class="fl">
+                        <p>地铁线路数</p>
+                        <p class="info_text">11</p>
+                    </div>
+                </div>
+                <div class="fl">
+                    <img src="img/info_6.png" alt="" class="fl">
+                    <div class="fl">
+                        <p>地铁站点数</p>
+                        <p class="info_text">283</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="info_2 fl" style="width:31%;">
+            <div class="text_2" id="metro_test_2" style="width: 194%;"></div>
+
+        </div>
+    </div>
+
+    <div class="data_main">
+        <div class="main_left fl">
+            <div class="left_1">
+                <div class="main_title" style="width: 220px;margin-left: -115px;">
+                    <img src="img/title_4.png" alt="">
+                    地铁区间里程数统计
+                </div>
+                <div id="chart_1" class="chart" style="width:100%;height: 100%;"></div>
+            </div>
+            <div class="left_2">
+                <div class="main_title">
+                    <img src="img/title_7.png" alt="">
+                    各区数据雷达图
+                </div>
+                <div id="chart_2" class="chart" style="width:100%;height: 100%;"></div>
+            </div>
+        </div>
+        <div class="main_center fl">
+            <div class="center_text">
+                <div class="main_title">
+                    <img src="img/title_3.png" alt="">
+                    地铁分布地图
+                </div>
+                <div id="chart_map" style="width:100%;height:100%;"></div>
+            </div>
+        </div>
+        <div class="main_right fr">
+            <div class="right_1">
+                <div class="main_title" style="width: 310px;margin-left: -155px;">
+                    <img src="img/title_8.png" alt="">
+                    地铁日均人流量随年份变化曲线
+                </div>
+                <div id="chart_3" class="echart" style="width:100%;height: 100%;"></div>
+            </div>
+            <div class="right_2">
+                <div class="main_title" style="width: 220px;margin-left: -115px;">
+                    <img src="img/title_1.png" alt="">
+                    站点数与里程数统计
+                </div>
+                <div id="chart_4" class="echart fl" style="width:100%;height: 300px;"></div>
+                <div style="width: 80%;" class="text_sum">
+                    <div class="fl" style="width:30%">412.39</div>
+                    <div class="fl" style="width:40%">统计</div>
+                    <div class="fr" style="width:30%">274</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- </div> -->
+    <script language="javascript">
+        var current_metro ;
+        function button_click(element){
+            current_metroline = element.id;//获取按钮点击的线路号数
+            //alert(element.id);
+            current_metro = element.id;
+            var new_element=document.createElement("script");
+            new_element.setAttribute("type","text/javascript");
+            new_element.setAttribute("src","./js/szmetro_function.js");
+            document.body.appendChild(new_element);
+        };
+
+    </script>
+
+
+</div>
+<!--content结束-->
+ 	 
+
+</body>
+<script src="js/jquery-2.2.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/common.js"></script>
+<script src="js/echarts.min.js"></script>
+<script src="js/SZechart.js"></script>
+<!-- <script src="js/china.js"></script> -->
+<!-- <script src="js/sz_index.js"></script> -->
+<script src="js/foundation-datepicker.js"></script>
+<script src="js/foundation-datepicker.zh-CN.js"></script>
+
+<script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script src="js/jquery.easing.min.js"></script>
+<script src="js/SZindex.js"></script>
+</html>

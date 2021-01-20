@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>深圳地铁信息展示平台</title>
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/style.css">
+	
+	<link rel="stylesheet" href="https://www.jq22.com/jquery/bootstrap-3.3.4.css">
+	<link rel="stylesheet" href="./css/base_navigation.css">
+	<link rel="stylesheet" href="./css/jquery-kq-nav-left.css">
+	<script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4/dist/echarts.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl@1/dist/echarts-gl.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat@1/dist/ecStat.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4/dist/extension/dataTool.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4/map/js/china.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4/map/js/world.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4/dist/extension/bmap.min.js"></script>
+	<style>
+	    .t_btn {
+	        margin-top: 20px;
+	    }
+	
+	    .t_btn li {
+	        display: inline-block;
+	        margin: 0 0px 20px 20px;
+	    }
+	
+	    .t_btn button,
+	    .t_a {
+	        display: inline-block;
+	        padding: 10px 5px;
+	        width: 80px;
+	        border-style: solid;
+	        border-width: 0;
+	        cursor: pointer;
+	        font-family: inherit;
+	        font-weight: bold;
+	        line-height: normal;
+	        margin: 0 0 0.5em 0;
+	        position: relative;
+	        text-decoration: none;
+	        text-align: center;
+	        display: inline-block;
+	        font-size: 1em;
+	        background-color: #2C58A6;
+	        border-color: #0263ff;
+	        color: white;
+	        box-shadow: 0 -2px 0 rgba(0, 0, 0, 0.2) inset !important;
+	        margin-right: 0.5em;
+	        border-radius: 4px;
+	    }
+	
+	    .t_height {
+	        line-height: 80px;
+	        position: absolute;
+	        right: 28px;
+	        top: 0;
+	    }
+	</style>
+	
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<!-- Meta, title, CSS, favicons, etc. -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>左侧导航</title>
+	<link rel="stylesheet" href="https://www.jq22.com/jquery/bootstrap-3.3.4.css">
+	<link rel="stylesheet" href="https://www.jq22.com/jquery/font-awesome.4.6.0.css">
+	<link rel="stylesheet" href="css/custom.min.css" />
+	<style type="text/css">
+		*{
+			padding: 0;margin: 0;
+		}
+		body,html{
+			width: 100%;
+			height: 100%;
+		}
+		.contentLeft {
+			float: left;
+			width: 15%;
+			height: 100%;
+			background:black;
+			opacity: 0.7;
+		}
+		
+		.contentRight {
+			float: left;
+			width: 85%;
+		}
+		
+	</style>
+	
+	<meta charset="UTF-8">
+	<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+	<script src="https://unpkg.com/deck.gl@^6.2.0/deckgl.min.js"></script>
+	<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.css">
+	<script src="https://d3js.org/d3.v5.min.js"></script>
+	<style>
+	    .chart_map-overlay {
+	        font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+	        position: absolute;
+	        width: 20%;
+	        top: 60px;
+	        right: 0;
+	        padding: 10px;
+	        z-index: 999;
+	    }
+	    .chart_map-overlay .chart_map-overlay-inner {
+	        background-color: rgba(57, 57, 57, 0.8);
+	        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+	        border-radius: 3px;
+	        padding: 10px;
+	        margin-bottom: 10px;
+	    }
+	    .chart_map-overlay h2 {
+	        line-height: 24px;
+	        display: block;
+	        margin: 0 0 10px;
+	    }
+	    .chart_map-overlay input {
+	        background-color: transparent;
+	        display: inline-block;
+	        width: 100%;
+	        position: relative;
+	        margin: 0;
+	        cursor: ew-resize;
+	    }
+	</style> 
+	
+</head>
+
+<body>
+	
+	<!-- 左侧导航栏 -->
+
+	
+    <!--header-->
+    <div class="header">
+        <div class="bg_header">
+            <div class="header_nav fl t_title" style="margin-left: 100px;">
+                深圳地铁信息展示平台
+            </div> 
+        </div>
+        <div class="header_nav fl">
+        </div>
+        <div class="header_myself fr t_height">
+            <a class="t_a" href="../ShenZhen.html">返回 &nbsp;</a>
+        </div>
+    </div>
+    <!--main-->
+    <div class="data_content">
+        <div class="data_main">
+            <div class="main_left fl">
+                <div class="left_1">
+					
+					<!-- /////////////////////左侧导航栏/////////////////////	 -->			
+                    <ul class="nav-left-container">
+                        <li>
+                            <!-- li的class为active表示点击选中 -->
+                            <!-- <a href="#"> -->
+                                <!-- aria-hidden字符串。可选值为true和false,true表示元素隐藏(不可见)，false表示元素可见。 -->
+                                <!-- <span class="glyphicon glyphicon-home f12" aria-hidden="true"></span>
+                                <span>主页</span>
+                                <span class="glyphicon glyphicon-menu-right f12 fr" aria-hidden="true"></span>
+                            </a> -->
+                            <!-- <ul class="nav-left-container-small"> -->
+                                <!-- aria-expanded表示展开状态。默认为undefined, 表示当前展开状态未知。其它可选值：true表示元素是展开的；false表示元素不是展开的。 -->
+                                <li>
+                                    <a class="chart_map" href="#">深圳地铁地图</a>
+                                </li>
+                            <!-- </ul> -->
+                        </li>
+						
+                        <li>
+                            <!-- <a href="#">
+                                <span class="glyphicon glyphicon-xianwang f12" aria-hidden="true"></span>
+                                <span>线网指标</span>
+                                <span class="glyphicon glyphicon-menu-right f12 fr" aria-hidden="true"></span>
+                            </a> -->
+                    
+                            <!-- <ul class="nav-left-container-small"> -->
+                                <li>
+                                    <a class="t_btn1" href="#">全市运营里程指标</a>
+                                </li>
+                                <!-- <li>
+                                    <a class="t_btn2" href="#">地铁线路长度指标</a>
+                                </li> -->
+                            <!-- </ul> -->
+                        </li>
+						
+                        <li>
+                            <!-- <a href="#">
+                                <span class="glyphicon glyphicon-chezhan f12" aria-hidden="true"></span>
+                                <span>车站指标</span>
+                                <span class="glyphicon glyphicon-menu-right f12 fr" aria-hidden="true"></span>
+                            </a> -->
+                            <!-- <ul class="nav-left-container-small"> -->
+                                <li>
+                                    <a class="t_btn3" href="#">各线路站点统计情况</a>
+                                </li>
+                            <!-- </ul> -->
+                        </li>
+						
+                        <!-- <li>
+                            <a href="#">
+                                <span class="glyphicon glyphicon-zhanjianju f12" aria-hidden="true"></span>
+                                <span>站点间距</span>
+                                <span class="glyphicon glyphicon-menu-right f12 fr" aria-hidden="true"></span>
+                            </a>
+                            <ul class="nav-left-container-small">
+                                <li>
+                                    <a class="t_btn4" href="#">线路平均运距</a>
+                                </li>
+								<li>
+									<a class="t_btn5" href="#">线路的里程数-站点数-平均站间距</a>
+								</li>
+                            </ul>
+                        </li>
+						 -->
+                        <li>
+                            <!-- <a href="#">
+                                <span class="glyphicon glyphicon-keliu" aria-hidden="true"></span>
+                                <span>客流指标</span>
+                                <span class="glyphicon glyphicon-menu-right f12 fr" aria-hidden="true"></span>
+                            </a> -->
+							<!-- <ul class="nav-left-container-small"> -->
+								
+								<li>
+									<a class="t_btn6" href="#">全市日均客运量与增长率</a>
+								</li>
+								<!-- <li>
+									<a class="t_btn7" href="#">地铁客运量比重</a>
+								</li>
+								<li>
+									<a class="t_btn8" href="#">网络客运强度与增长率</a>
+								</li> -->
+							<!-- </ul> -->
+                        </li>
+						
+						<!-- <li> -->
+						    <!-- <a href="#">
+						        <span class="glyphicon glyphicon-zhanjianju f12" aria-hidden="true"></span>
+						        <span>线路运营速度</span>
+						        <span class="glyphicon glyphicon-menu-right f12 fr" aria-hidden="true"></span>
+						    </a> -->
+						    <!-- <ul class="nav-left-container-small"> -->
+								<!-- <li>
+									<a class="t_btn9" href="#">各线路运营最高速度</a>
+								</li> -->
+						    <!-- </ul> -->
+						<!-- </li> -->
+						
+						<li>
+						    <!-- <a href="#">
+						        <span class="glyphicon glyphicon-district f12" aria-hidden="true"></span>
+						        <span>行政区指标</span>
+						        <span class="glyphicon glyphicon-menu-right f12 fr" aria-hidden="true"></span>
+						    </a> -->
+						    <!-- <ul class="nav-left-container-small"> -->
+								<li>
+									<a class="t_btn10" href="#">各区地铁相关指标统计</a>
+								</li>
+								<li>
+									<a class="t_btn11" href="#">各区其他指标统计</a>
+								</li>
+								<li>
+									<a class="t_btn12" href="#">各区指标相关性</a>
+								</li>
+						    <!-- </ul> -->
+						</li>
+						
+						<li>
+						    <!-- <a href="#">
+						        <span class="glyphicon glyphicon-district f12" aria-hidden="true"></span>
+						        <span>行政区指标</span>
+						        <span class="glyphicon glyphicon-menu-right f12 fr" aria-hidden="true"></span>
+						    </a> -->
+						    <!-- <ul class="nav-left-container-small"> -->
+								<li>
+									<a class="t_btn13" href="#">各区地铁服务水平分布</a>
+								</li>
+								
+						    <!-- </ul> -->
+						</li>
+                        <li>
+                            <!-- <a href="#">
+                                <span class="glyphicon glyphicon-district f12" aria-hidden="true"></span>
+                                <span>行政区指标</span>
+                                <span class="glyphicon glyphicon-menu-right f12 fr" aria-hidden="true"></span>
+                            </a> -->
+                            <!-- <ul class="nav-left-container-small"> -->
+                        <li>
+                            <a class="t_btn14" href="#">地铁站点服务缓冲区分析</a>
+                        </li>
+
+                        <!-- </ul> -->
+                        </li>
+                    </ul>
+                    <script>
+                        $('.nav-left-container').on('click', 'li', function() {
+                            $(this).find('.glyphicon-menu-right').removeClass('glyphicon-menu-right').addClass('glyphicon-menu-down');
+                            $(this).addClass('active').children('.nav-left-container-small').slideDown()
+                    
+                            $(this).siblings().removeClass('active').children('.nav-left-container-small').slideUp()
+                            $(this).siblings().find('.glyphicon-menu-down').removeClass('glyphicon-menu-down').addClass('glyphicon-menu-right ');
+                        })
+                    </script>
+					
+                </div>
+                <div class="left_2" style="display:none">
+                    <div class="main_title">
+                         深圳地图
+                    </div>
+                </div>
+            </div>
+            <div class="main_center fl">
+                <div class="center_text t_cos0">
+                    <!--左上边框-->
+                    <div class="t_line_box">
+                        <i class="t_l_line"></i> 
+                        <i class="l_t_line"></i> 
+                    </div> 
+                    <!--右上边框-->
+                    <div class="t_line_box">
+                        <i class="t_r_line"></i> 
+                        <i class="r_t_line"></i> 
+                    </div> 
+                    <!--左下边框-->
+                    <div class="t_line_box">
+                        <i class="l_b_line"></i> 
+                        <i class="b_l_line"></i> 
+                    </div> 
+                        <!--右下边框-->
+                        <div class="t_line_box">
+                        <i class="r_b_line"></i> 
+                        <i class="b_r_line"></i> 
+                    </div> 
+                    <div class="main_title">
+                         深圳地铁线路图
+                    </div>
+                    <div id="chart_map" style="width:100%;height:778px;"></div>
+
+                </div>
+                <div class="center_text t_cos1" style="display:none">
+                    <!--左上边框-->
+                    <div class="t_line_box">
+                        <i class="t_l_line"></i> 
+                        <i class="l_t_line"></i> 
+                    </div> 
+                    <!--右上边框-->
+                    <div class="t_line_box">
+                        <i class="t_r_line"></i> 
+                        <i class="r_t_line"></i> 
+                    </div> 
+                    <!--左下边框-->
+                    <div class="t_line_box">
+                        <i class="l_b_line"></i> 
+                        <i class="b_l_line"></i> 
+                    </div> 
+                        <!--右下边框-->
+                        <div class="t_line_box">
+                        <i class="r_b_line"></i> 
+                        <i class="b_r_line"></i> 
+                    </div>
+                    <div class="main_title">
+                         网络运营长度长度指标
+                    </div>
+                    <div id="chart_1" class="chart" style="width:100%;height:778px;"></div>
+                </div>
+                <div class="center_text t_cos2" style="display:none">
+                    <!--左上边框-->
+                    <div class="t_line_box">
+                        <i class="t_l_line"></i> 
+                        <i class="l_t_line"></i> 
+                    </div> 
+                    <!--右上边框-->
+                    <div class="t_line_box">
+                        <i class="t_r_line"></i> 
+                        <i class="r_t_line"></i> 
+                    </div> 
+                    <!--左下边框-->
+                    <div class="t_line_box">
+                        <i class="l_b_line"></i> 
+                        <i class="b_l_line"></i> 
+                    </div> 
+                        <!--右下边框-->
+                        <div class="t_line_box">
+                        <i class="r_b_line"></i> 
+                        <i class="b_r_line"></i> 
+                    </div>
+                    <div class="main_title">
+                        地铁线路长度指标
+                    </div>
+                    <div id="chart_2" class="chart" style="width:100%;height:778px;"></div>
+                </div>
+                <div class="center_text t_cos3" style="display:none">
+                    <!--左上边框-->
+                    <div class="t_line_box">
+                        <i class="t_l_line"></i> 
+                        <i class="l_t_line"></i> 
+                    </div> 
+                    <!--右上边框-->
+                    <div class="t_line_box">
+                        <i class="t_r_line"></i> 
+                        <i class="r_t_line"></i> 
+                    </div> 
+                    <!--左下边框-->
+                    <div class="t_line_box">
+                        <i class="l_b_line"></i> 
+                        <i class="b_l_line"></i> 
+                    </div> 
+                        <!--右下边框-->
+                        <div class="t_line_box">
+                        <i class="r_b_line"></i> 
+                        <i class="b_r_line"></i> 
+                    </div>
+                    <div class="main_title">
+                     各线路站点统计情况
+                    </div>
+                    <div id="chart_3" class="chart" style="width:100%;height:778px;"></div>
+                </div>
+                <div class="center_text t_cos4" style="display:none">
+                    <!--左上边框-->
+                    <div class="t_line_box">
+                        <i class="t_l_line"></i> 
+                        <i class="l_t_line"></i> 
+                    </div> 
+                    <!--右上边框-->
+                    <div class="t_line_box">
+                        <i class="t_r_line"></i> 
+                        <i class="r_t_line"></i> 
+                    </div> 
+                    <!--左下边框-->
+                    <div class="t_line_box">
+                        <i class="l_b_line"></i> 
+                        <i class="b_l_line"></i> 
+                    </div> 
+                        <!--右下边框-->
+                        <div class="t_line_box">
+                        <i class="r_b_line"></i> 
+                        <i class="b_r_line"></i> 
+                    </div>
+                    <div class="main_title">
+                        线路平均运距
+                    </div>
+                    <div id="chart_4" class="chart" style="width:100%;height:778px;"></div>
+                </div>
+                <div class="center_text t_cos5" style="display:none">
+                    <!--左上边框-->
+                    <div class="t_line_box">
+                        <i class="t_l_line"></i> 
+                        <i class="l_t_line"></i> 
+                    </div> 
+                    <!--右上边框-->
+                    <div class="t_line_box">
+                        <i class="t_r_line"></i> 
+                        <i class="r_t_line"></i> 
+                    </div> 
+                    <!--左下边框-->
+                    <div class="t_line_box">
+                        <i class="l_b_line"></i> 
+                        <i class="b_l_line"></i> 
+                    </div> 
+                        <!--右下边框-->
+                        <div class="t_line_box">
+                        <i class="r_b_line"></i> 
+                        <i class="b_r_line"></i> 
+                    </div>
+                    <div class="main_title">
+                        线路的里程数-站点数-平均站间距
+                    </div>
+                    <div id="chart_5" class="chart" style="width:100%;height:778px;"></div>
+                </div>
+                <div class="center_text t_cos6" style="display:none">
+                    <!--左上边框-->
+                    <div class="t_line_box">
+                        <i class="t_l_line"></i> 
+                        <i class="l_t_line"></i> 
+                    </div> 
+                    <!--右上边框-->
+                    <div class="t_line_box">
+                        <i class="t_r_line"></i> 
+                        <i class="r_t_line"></i> 
+                    </div> 
+                    <!--左下边框-->
+                    <div class="t_line_box">
+                        <i class="l_b_line"></i> 
+                        <i class="b_l_line"></i> 
+                    </div> 
+                        <!--右下边框-->
+                        <div class="t_line_box">
+                        <i class="r_b_line"></i> 
+                        <i class="b_r_line"></i> 
+                    </div>
+                    <div class="main_title">
+                        全市日均客运量与增长
+                    </div>
+                    <div id="chart_6" class="chart" style="width:100%;height:778px;"></div>
+                </div>
+                <div class="center_text t_cos7" style="display:none">
+                    <!--左上边框-->
+                    <div class="t_line_box">
+                        <i class="t_l_line"></i> 
+                        <i class="l_t_line"></i> 
+                    </div> 
+                    <!--右上边框-->
+                    <div class="t_line_box">
+                        <i class="t_r_line"></i> 
+                        <i class="r_t_line"></i> 
+                    </div> 
+                    <!--左下边框-->
+                    <div class="t_line_box">
+                        <i class="l_b_line"></i> 
+                        <i class="b_l_line"></i> 
+                    </div> 
+                        <!--右下边框-->
+                        <div class="t_line_box">
+                        <i class="r_b_line"></i> 
+                        <i class="b_r_line"></i> 
+                    </div>
+                    <div class="main_title">
+                         地铁客运量比重
+                    </div>
+                    <div id="chart_7" class="chart" style="width:100%;height:778px;"></div>
+                </div>
+                <div class="center_text t_cos8" style="display:none">
+                    <!--左上边框-->
+                    <div class="t_line_box">
+                        <i class="t_l_line"></i> 
+                        <i class="l_t_line"></i> 
+                    </div> 
+                    <!--右上边框-->
+                    <div class="t_line_box">
+                        <i class="t_r_line"></i> 
+                        <i class="r_t_line"></i> 
+                    </div> 
+                    <!--左下边框-->
+                    <div class="t_line_box">
+                        <i class="l_b_line"></i> 
+                        <i class="b_l_line"></i> 
+                    </div> 
+                        <!--右下边框-->
+                        <div class="t_line_box">
+                        <i class="r_b_line"></i> 
+                        <i class="b_r_line"></i> 
+                    </div>
+                    <div class="main_title">
+                         全市日均客运量与增长率
+                    </div>
+                    <div id="chart_8" class="chart" style="width:100%;height:778px;"></div>
+                </div>
+                <div class="center_text t_cos9" style="display:none">
+                    <!--左上边框-->
+                    <div class="t_line_box">
+                        <i class="t_l_line"></i> 
+                        <i class="l_t_line"></i> 
+                    </div> 
+                    <!--右上边框-->
+                    <div class="t_line_box">
+                        <i class="t_r_line"></i> 
+                        <i class="r_t_line"></i> 
+                    </div> 
+                    <!--左下边框-->
+                    <div class="t_line_box">
+                        <i class="l_b_line"></i> 
+                        <i class="b_l_line"></i> 
+                    </div> 
+                        <!--右下边框-->
+                        <div class="t_line_box">
+                        <i class="r_b_line"></i> 
+                        <i class="b_r_line"></i> 
+                    </div>
+                    <div class="main_title">
+                         线路运营最高速度雷达图
+                    </div>
+                    <div id="chart_9" class="chart" style="width:100%;height:778px;"></div>
+                </div>
+                <div class="center_text t_cos10" style="display:none">
+                    <!--左上边框-->
+                    <div class="t_line_box">
+                        <i class="t_l_line"></i> 
+                        <i class="l_t_line"></i> 
+                    </div> 
+                    <!--右上边框-->
+                    <div class="t_line_box">
+                        <i class="t_r_line"></i> 
+                        <i class="r_t_line"></i> 
+                    </div> 
+                    <!--左下边框-->
+                    <div class="t_line_box">
+                        <i class="l_b_line"></i> 
+                        <i class="b_l_line"></i> 
+                    </div> 
+                        <!--右下边框-->
+                        <div class="t_line_box">
+                        <i class="r_b_line"></i> 
+                        <i class="b_r_line"></i> 
+                    </div>
+                    <div class="main_title">
+                        地铁相关指标统计
+                    </div>
+                    <div id="chart_10" class="chart" style="width:100%;height:778px;"></div>
+                </div>
+                <div class="center_text t_cos11" style="display:none">
+                    <!--左上边框-->
+                    <div class="t_line_box">
+                        <i class="t_l_line"></i> 
+                        <i class="l_t_line"></i> 
+                    </div> 
+                    <!--右上边框-->
+                    <div class="t_line_box">
+                        <i class="t_r_line"></i> 
+                        <i class="r_t_line"></i> 
+                    </div> 
+                    <!--左下边框-->
+                    <div class="t_line_box">
+                        <i class="l_b_line"></i> 
+                        <i class="b_l_line"></i> 
+                    </div> 
+                        <!--右下边框-->
+                        <div class="t_line_box">
+                        <i class="r_b_line"></i> 
+                        <i class="b_r_line"></i> 
+                    </div>
+                    <div class="main_title">
+                        各区其他指标统计
+                    </div>
+                    <div id="chart_11" class="chart" style="width:100%;height:778px;"></div>
+                </div>
+                <div class="center_text t_cos12" style="display:none">
+                    <!--左上边框-->
+                    <div class="t_line_box">
+                        <i class="t_l_line"></i> 
+                        <i class="l_t_line"></i> 
+                    </div> 
+                    <!--右上边框-->
+                    <div class="t_line_box">
+                        <i class="t_r_line"></i> 
+                        <i class="r_t_line"></i> 
+                    </div> 
+                    <!--左下边框-->
+                    <div class="t_line_box">
+                        <i class="l_b_line"></i> 
+                        <i class="b_l_line"></i> 
+                    </div> 
+                        <!--右下边框-->
+                        <div class="t_line_box">
+                        <i class="r_b_line"></i> 
+                        <i class="b_r_line"></i> 
+                    </div>
+                    <div class="main_title">
+                       散点图展示关联性
+                    </div>
+                    <div id="chart_12" class="chart" style="width:100%;height:778px;"></div>
+                </div>
+                <div class="center_text t_cos13" style="display:none">
+                    <!--左上边框-->
+                    <div class="t_line_box">
+                        <i class="t_l_line"></i> 
+                        <i class="l_t_line"></i> 
+                    </div> 
+                    <!--右上边框-->
+                    <div class="t_line_box">
+                        <i class="t_r_line"></i> 
+                        <i class="r_t_line"></i> 
+                    </div> 
+                    <!--左下边框-->
+                    <div class="t_line_box">
+                        <i class="l_b_line"></i> 
+                        <i class="b_l_line"></i> 
+                    </div> 
+                        <!--右下边框-->
+                        <div class="t_line_box">
+                        <i class="r_b_line"></i> 
+                        <i class="b_r_line"></i> 
+                    </div>
+                    <div class="main_title">
+                        各区服务水平分布
+                    </div>
+                    <div id="chart_13" class="chart" style="width:100%;height:778px; cursor: pointer;"></div>
+
+                </div>
+                <div class="center_text t_cos14" style="display:none">
+                    <!--左上边框-->
+                    <div class="t_line_box">
+                        <i class="t_l_line"></i>
+                        <i class="l_t_line"></i>
+                    </div>
+                    <!--右上边框-->
+                    <div class="t_line_box">
+                        <i class="t_r_line"></i>
+                        <i class="r_t_line"></i>
+                    </div>
+                    <!--左下边框-->
+                    <div class="t_line_box">
+                        <i class="l_b_line"></i>
+                        <i class="b_l_line"></i>
+                    </div>
+                    <!--右下边框-->
+                    <div class="t_line_box">
+                        <i class="r_b_line"></i>
+                        <i class="b_r_line"></i>
+                    </div>
+                    <div class="main_title">
+                        地铁站点缓冲区分析
+                    </div>
+                    <div id="chart_14" class="chart" style="width:100%;height:778px; cursor: pointer;"></div>
+                    <div class="buff_button" style="padding: 50px;">
+                        <button class="btn btn-primary" style="position: absolute;left: 38%;" onclick="buff(500)">站点500m缓冲区分析</button>
+                        <button class="btn btn-primary" style="position: absolute;left: 55%;" onclick="buff(1000)">站点1000m缓冲区分析</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+    <script src="./js/jquery-2.2.1.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/common.js"></script>
+    <script src="http://api.map.baidu.com/api?v=2.0&ak=dApOtvB5E3x6byHpUGHbRF1fxctCBdjw"></script>
+    <script src="./js/echarts.min.js"></script>
+    <script src="./js/dataTool.js"></script>
+    <script src="./js/base.js"></script>
+    <script src="./js/bmap.js"></script>
+    <script src="./js/echarts-all.js"></script>
+    <script src="./js/index.js"></script>
+    <script src="./js/shenzhen_metro_map.js"></script>
+    <script src="./js/buf.js"></script>
+	<script type="text/javascript">
+		$('.t_btn13').click(function(){
+		    $('.center_text').css('display', 'none');
+		    $('.t_cos13').css('display', 'block');
+		    var myChart = echarts.init(document.getElementById('chart_13'));
+		    myChart.clear();
+		    var app = {};
+		    option = null;
+		    myChart.showLoading();
+		    
+		    $.get('sz_final.json', function (geoJson) {
+		    
+		        myChart.hideLoading();
+		    
+		        echarts.registerMap('SZ', geoJson);
+		    
+		        myChart.setOption(option = {
+		            title: {
+		                text: '各区地铁站点服务水平分布图（2020年）',
+						top:'10%',
+						left:'35%',
+                        textStyle:{color:"#fff"}
+		            },
+		            tooltip: {
+		                trigger: 'item',
+		                formatter: '{b}<br/>{c}'
+		            },
+		            toolbox: {
+		                show: true,
+		                orient: 'vertical',
+		                left: 'right',
+		                top: 'center',
+		                feature: {
+		                    dataView: {readOnly: false},
+		                    restore: {},
+		                    saveAsImage: {}
+		                }
+		            },
+		            visualMap: {
+		                min: 0,
+		                max: 50,
+		                text: ['High', 'Low'],
+		                realtime: false,
+		                calculable: true,
+		                inRange: {
+		                    color: ['lightskyblue', 'yellow', 'orangered']
+		                },
+						color:'#fff'
+		            },
+		            series: [
+		                {
+		                    name: '各区地铁站点服务水平分布',
+		                    type: 'map',
+		                    mapType: 'SZ', // 自定义扩展图表类型
+		                    label: {
+                                normal: {
+                                    show: true,
+                                    textStyle: {
+                                        fontSize: 15,
+                                        fontWeight: 'bold',
+                                        color: 'red'
+                                    }
+                                }
+		                    },
+                            itemStyle: {
+                                emphasis: {
+                                    areaColor: '#2B91B7',
+                                }
+                            },
+		                    data: [
+		                        {name:"罗湖区", value: 21.05053672},
+		                        {name:"福田区", value: 43.48823442},
+		                        {name:"南山区", value: 19.86745236},
+		                        {name:"龙华区", value: 19.08046742},
+		                        {name:"龙岗区", value: 5.792862668},
+		                        {name:"光明区", value: 4.129370973},
+		                        {name:"大鹏区", value: 0},
+		                        {name:"盐田区", value: 4.537847369},
+		                        {name:"坪山区", value: 0},
+		                        {name:"宝安区", value: 5.295490939}
+		                    ],
+		                    // 自定义名称映射
+		                    nameMap: {
+		                        "罗湖区": "罗湖区",
+		                        "福田区": "福田区",
+		                        "南山区": "南山区",
+		                        "龙华区": "龙华区",
+		                        "龙岗区": "龙岗区",
+		                        "光明区": "光明区",
+		                        "大鹏区": "大鹏区",
+		                        "盐田区": "盐田区",
+		                        "坪山区": "坪山区",
+		                        "宝安区": "宝安区"
+		                    }
+		                }
+		            ]
+		        });
+		    });;
+		    if (option && typeof option === "object") {
+		        myChart.setOption(option, true);
+		    }
+		});
+		
+		
+	</script>
+</html>

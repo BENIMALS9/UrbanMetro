@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>D3-1.js 2020年 全国地铁分布可视化系统</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/地铁icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/地铁icon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/地铁icon.png">
+    <link rel="manifest" href="images/favicon/地铁icon.png">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800%7CRubik:400,400i,500,700,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="https://www.jq22.com/jquery/bootstrap-4.2.1.css">
+    <link rel="stylesheet" href="css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="https://www.jq22.com/jquery/font-awesome.4.7.0.css">
+    <link rel="stylesheet" href="css/hover-min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="plugins/indext-icons/style.css">
+    <link rel="stylesheet" href="css/nouislider.css">
+    <link rel="stylesheet" href="css/jquery.bootstrap-touchspin.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+    <div class="preloader"><span></span></div><!-- /.preloader -->
+    <div class="page-wrapper">
+        <header class="site-header site-header__header-one site-header__header-five ">
+            <nav class="navbar navbar-expand-lg navbar-light header-navigation stricky"  style="background-color: #034c6a">
+                <div class="container clearfix">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="logo-box">
+                        <a class="navbar-brand" href="index.html">
+                            <img src="images/slider/地铁logo.png" width="80" height="80" class="main-logo" alt="Awesome Image" />
+                        </a>
+                        <button class="menu-toggler" data-target=".main-navigation">
+                            <span class="fa fa-bars"></span>
+                        </button>
+
+
+                    </div><!-- /.logo-box -->
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="main-navigation">
+                        <ul class=" navigation-box @@extra_class">
+                            <li class="current"><a href="index.html">首页</a></li>
+                            <li>
+                                <a href="China.html">地铁变化展示</a>
+
+                            </li>
+                            <li>
+                                <a href="ShenZhen.html">地铁线路可视化</a>
+
+                            </li>
+                            <li>
+                                <a href="page/showchart_index.html">地铁指标统计</a>
+
+                            </li>
+                        </ul>
+                    </div><!-- /.navbar-collapse --> 
+                    <div class="right-side-box">
+                        <a href="China.html" class="thm-btn site-header__qoute-btn">进入系统 <i class="fa fa-long-arrow-right"></i>
+                        </a><!-- /.thm-btn -->
+                    </div><!-- /.right-side-box -->
+                </div>
+                <!-- /.container -->
+            </nav>
+        </header><!-- /.site-header -->
+        <section class="slider-two slider-two__home-five">
+            <div class="slider-two__carousel owl-carousel owl-theme">
+                <div class="item slider-two__slider-1" style="background-image: url(images/slider/地铁4.png);">
+                    <div class="container">
+                        <h2 class="slider-one__title"><span class="slider-two__linear-text">中国地铁可视化分析系统</span> <br>
+                            为您服务</h2><!-- /.slider-one__title -->
+                        <!-- /.slider-two__text -->
+                        <a href="China.html" class="thm-btn slider-two__btn">了解更多</a><!-- /.thm-btn -->
+
+                    </div><!-- /.container -->
+
+                </div><!-- /.item -->
+                <div class="item slider-two__slider-2" style="background-image: url(images/slider/地铁5.jpg);">
+                    <div class="container">
+                        <h2 class="slider-one__title"><span class="slider-two__linear-text">中国地铁发展速度</span> <br>
+                        令人惊叹</h2><!-- /.slider-one__title -->
+                        <!-- /.slider-one__text -->
+                        <a href="China.html" class="thm-btn slider-two__btn">了解更多</a><!-- /.thm-btn -->
+
+                    </div><!-- /.container -->
+                </div><!-- /.item -->
+                <div class="item slider-two__slider-3" style="background-image: url(images/slider/地铁3.png);">
+                    <div class="container">
+                        <h2 class="slider-one__title"><span class="slider-two__linear-text">中国地铁</span> <br>
+                            我们在路上</h2><!-- /.slider-one__title -->
+                        <!-- /.slider-one__text -->
+                        <a href="China.html" class="thm-btn slider-two__btn">了解更多</a><!-- /.thm-btn -->
+
+                    </div><!-- /.container -->
+                </div><!-- /.item -->
+            </div><!-- /.slider-two__carousel -->
+        </section><!-- /.slider-two -->
+        <section class="about-five">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="about-five__content wow fadeInUp" data-wow-duration="1500ms">
+                            <div class="row justify-content-between">
+                                <span class="about-five__sep"></span><!-- /.about-five__sep -->
+                                <div class="col-md-5">
+                                    <div class="about-one__feature">
+                                        <i class="about-one__feature-icon indext-icon-mission-1-1"></i>
+                                        <!-- /.about-one__feature-icon -->
+                                        <h2 class="about-one__feature-title"><a href="contact.html">中国地铁开通50周年</a>
+                                        </h2><!-- /.about-one__feature-title -->
+                                        <p class="about-one__feature-text">我国第一条地铁是北京苹果园一火车站的23公里线路,1965年开建,1969年开通运营,比世界第一条地铁晚了100多年。经过50多年的发展,我国地铁运营线路位居世界首位,上海、北京地铁线路规模位居世界第一、第二位。我国除运营规模位居世界前列外,客运量也居全球第一。在建线路和规划线路均遥遥领先于世界。50年的发展创造了世界城轨交通发展史上的奇迹。</p>
+                                        <!-- /.about-one__feature-text -->
+                                    </div><!-- /.about-one__feature -->
+                                </div><!-- /.col-md-6 -->
+                                <div class="col-md-5">
+                                    <div class="about-one__feature">
+                                        <i class="about-one__feature-icon indext-icon-vision-1-1"></i>
+                                        <!-- /.about-one__feature-icon -->
+                                        <h2 class="about-one__feature-title"><a href="team.html">开通运营里程再创新高</a></h2>
+                                        <!-- /.about-one__feature-title -->
+                                        <p class="about-one__feature-text">随着城镇化的推进和人口加速向中心城市集聚,近年,中国城市轨道交通呈现爆发式增长,城市轨道交通新增运营里程在2016年首次突破500公里之后,2019年将首次突破900公里,中国内地累计有40个城市投运城轨交通线路,2019年新增温州、济南、常州、徐州、呼和浩特,其中,兰州为首次开通地铁运营线路城市。此外,澳门也正式进入城轨时代。</p>
+                                        <!-- /.about-one__feature-text -->
+                                    </div><!-- /.about-one__feature -->
+                                </div><!-- /.col-md-6 -->
+                            </div><!-- /.row -->
+                        </div><!-- /.about-five__content -->
+                    </div><!-- /.col-lg-8 -->
+                    <div class="col-lg-4" style="background-color: #034c6a">
+                        <div class="block-title wow fadeInUp" data-wow-duration="1500ms" style="background-color: #034c6a">
+                            <p class="block-title__tag-line">信仰</p><!-- /.block-title__tag-line -->
+                            <h3 class="block-title__title">不忘初心 <br> <span class="block-title__bold">牢记使命</span>
+                            <br>艰苦奋斗<br>砥砺前行<!-- /.block-title__bold -->
+                            </h3><!-- /.block-title__title -->
+                        </div><!-- /.block-title -->
+                    </div><!-- /.col-lg-4 -->
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </section><!-- /.about-five -->
+        <section class="about-six">
+            <div class="container">
+                <img src="images/resources/444.jpg" alt="" width="100%">
+            </div><!-- /.container -->
+        </section><!-- /.about-six -->
+        <section class="cta-three text-center">
+            <div class="container">
+                <h2 class="cta-three__title">中国地铁可视化</h2><!-- /.cta-three__title -->
+                <p class="cta-three__text">让更多人了解地铁</p>
+                <!-- /.cta-three__text -->
+                <a href="" class="cta-three__btn thm-btn">加入我们 <div id="QRcodeImg">
+                </div></a><!-- /.thm-btn -->
+            </div><!-- /.container -->
+        </section><!-- /.cta-three -->
+        <footer class="site-footer">
+            <div class="site-footer__upper">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-5">
+                            <div class="footer-widget footer-widget__about-widget">
+                                <a href="index.html"><img src="images/favicon/D3.jpg" width="185" class="footer-widget__logo" alt=""></a>
+                                <p class="footer-widget__text">D3-1.js可视化小组成立于2020年10月，现有员工5人，为了全国地铁可视化而努力奋斗</p><!-- /.footer-widget__text -->
+                                <div class="footer-widget__social">
+                                    <a href="#" class="fa fa-qq"></a>
+                                    <a href="#" class="fa fa-weixin"></a>
+                                    <a href="#" class="fa fa-weibo"></a>
+                                    <a href="#" class="fa fa-rss"></a>
+                                </div><!-- /.footer-widget__social -->
+                            </div><!-- /.footer-widget -->
+                        </div><!-- /.col-lg-6 -->
+                        <div class="col-xl-3 col-lg-4">
+                            <div class="footer-widget footer-widget__contact-widget">
+                                <h2 class="footer-widget__title">联系信息</h2><!-- /.footer-widget__title -->
+                                <p class="footer-widget__text">广东省深圳市南山区 <br> 深圳大学粤海校区
+                                </p>
+                                <!-- /.footer-widget__text -->
+                                <p class="footer-widget__text">传真：********</p><!-- /.footer-widget__text -->
+                                <p class="footer-widget__text">客服热线：********</p><!-- /.footer-widget__text -->
+                                <p class="footer-widget__text">邮箱：*********</p><!-- /.footer-widget__text -->
+                            </div><!-- /.footer-widget -->
+                        </div><!-- /.col-lg-3 -->
+                        <div class="col-xl-3 col-lg-4">
+                            <div class="footer-widget footer-widget__contact-widget">
+                                <h2 class="footer-widget__title">小组成员</h2><!-- /.footer-widget__title -->
+                                <p class="footer-widget__text">许芮溧</p>
+                                <p class="footer-widget__text">黄键熙</p> <br/>
+                                <p class="footer-widget__text">廖金禧</p> <br/>
+                                <p class="footer-widget__text">张涓</p> <br/>
+                                <p class="footer-widget__text">吴泽峰</p> <br/>
+                            </div><!-- /.footer-widget -->
+                        </div><!-- /.col-lg-3 -->
+                    </div><!-- /.row -->
+                </div><!-- /.container -->
+            </div><!-- /.site-footer__upper -->
+        </footer><!-- /.site-footer -->
+    </div><!-- /.page-wrapper -->
+    <div class="search-popup">
+        <div class="search-popup__overlay custom-cursor__overlay">
+            <div class="cursor"></div>
+            <div class="cursor-follower"></div>
+        </div><!-- /.search-popup__overlay -->
+        <div class="search-popup__inner">
+            <form action="#" class="search-popup__form">
+                <input type="text" name="search" placeholder="在此输入搜索....">
+                <button type="submit"><i class="indext-icon-Search"></i></button>
+            </form>
+        </div><!-- /.search-popup__inner -->
+    </div><!-- /.search-popup -->
+    <a href="#" data-target="html" class="scroll-to-target scroll-to-top"><i class="indext-icon-arrow-up"></i></a>
+    <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/bootstrap-datepicker.min.js"></script>
+    <script src="js/bootstrap-select.min.js"></script>
+    <script src="js/isotope.js"></script>
+    <script src="js/jquery.counterup.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/TweenMax.min.js"></script>
+    <script src="js/waypoints.min.js"></script>
+    <script src="js/wow.min.js"></script>
+
+    <script src="js/nouislider.js"></script>
+    <script src="js/jquery.bootstrap-touchspin.min.js"></script>
+    <script src="js/theme.js"></script>
+
+</body>
+
+</html>
