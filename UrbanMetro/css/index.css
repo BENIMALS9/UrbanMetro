@@ -144,12 +144,12 @@ s, i, em {
     transform: rotate(-180deg);
 }
 .container {
-    width: 900px;
+    width: 54%;
     margin: 0 auto;
     height: 80px;
     position: absolute;
     top: 15%;
-    left: 33%;
+    left: 31%;
     padding: 50px;
     padding-top: 0;
 }
