@@ -64,7 +64,7 @@ $(function () {
             else if (regions[i] == "7")
                 name_color.push('#55ff00')
             else if (regions[i] == "8")
-                name_color.push('#e8e158')
+                name_color.push('#eeff05')
         }
 
         var option = {
@@ -466,6 +466,7 @@ $(function () {
                 {value:2, name: '华东'},
                 {value:3, name: '华南'},
                 {value:3, name: '东北'},
+                {value:'', name: '西北'},
                 {value:2, name: '西南'},
                 {value:3, name: '港澳台'}
             ];
@@ -478,6 +479,7 @@ $(function () {
                 {value:2, name: '华东'},
                 {value:2, name: '华南'},
                 {value:2, name: '东北'},
+                {value:'', name: '西北'},
                 {value:1, name: '西南'},
                 {value:2, name: '港澳台'}
             ];
@@ -486,8 +488,12 @@ $(function () {
         {
             data=[
                 {value:2, name:'华北'},
+                {value:'', name: '华中'},
                 {value:1, name: '华东'},
                 {value:1, name: '华南'},
+                {value:'', name: '东北'},
+                {value:'', name: '西北'},
+                {value:'', name: '西南'},
                 {value:2, name: '港澳台'}
             ];
         }
@@ -495,6 +501,12 @@ $(function () {
         {
             data=[
                 {value:2, name:'华北'},
+                {value:'', name: '华中'},
+                {value:'', name: '华东'},
+                {value:'', name: '华南'},
+                {value:'', name: '东北'},
+                {value:'', name: '西北'},
+                {value:'', name: '西南'},
                 {value:1, name: '港澳台'}
             ];
         }
@@ -506,7 +518,7 @@ $(function () {
                 trigger: 'item',
                 formatter: " {b} ({d}%) <br/> {a} : {c} 个"
             },
-            color: ['#1478fd', '#cd7f32', '#f6072a', '#25f3e6','#4caed3','#55ff00','#ffaaff','#e8e158'],
+            color: ['#1478fd', '#cd7f32', '#f6072a', '#25f3e6','#4caed3','#55ff00','#ffaaff','#eeff05'],
             legend: { //图例组件，颜色和名字
                 left: '65%',
                 top: '50',
@@ -562,7 +574,7 @@ $(function () {
                 type: 'pie',
                 clockwise: false,
                 silent: true,
-                minAngle: 20, //最小的扇区角度（0 ~ 360）
+                minAngle: 0, //最小的扇区角度（0 ~ 360）
                 center: ['35%', '50%'], //饼图的中心（圆心）坐标
                 radius: [0, 45], //饼图的半径
                 itemStyle: { //图形样式
@@ -580,6 +592,8 @@ $(function () {
                 data: data
             }]
         };
+
+
 
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
@@ -644,7 +658,7 @@ $(function () {
             else if (v.name == "西北")
                 region_color = '#55ff00';
             else if (v.name == "港澳台")
-                region_color = '#e8e158';
+                region_color = '#eeff05';
             else if (v.name == "华中")
                 region_color = '#cd7f32';
             data.push({
