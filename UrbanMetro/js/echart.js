@@ -33,6 +33,7 @@ $(function () {
         var mileages = [];
         var lines = [];
         var stations = [];
+        var regions = [];
 
         var data = city_data[year.toString()].sort(sortJ).slice(0, 10);
 
@@ -41,7 +42,30 @@ $(function () {
             mileages.push(v.mileages);
             lines.push(v.lines);
             stations.push(v.stations);
+            regions.push(v.region);
         })
+
+        var name_color = [];
+
+        for (var i = 0;i < 10; i++)
+        {
+            if (regions[i] == "1")
+                name_color.push('#1478fd')
+            else if (regions[i] == "2")
+                name_color.push('#f6072a')
+            else if (regions[i] == "3")
+                name_color.push('#25f3e6')
+            else if (regions[i] == "4")
+                name_color.push('#4caed3')
+            else if (regions[i] == "5")
+                name_color.push('#cd7f32')
+            else if (regions[i] == "6")
+                name_color.push('#ffaaff')
+            else if (regions[i] == "7")
+                name_color.push('#55ff00')
+            else if (regions[i] == "8")
+                name_color.push('#e8e158')
+        }
 
         var option = {
             tooltip: {
@@ -71,26 +95,33 @@ $(function () {
             yAxis: {
                 type: 'category',
                 inverse: true,
-                axisLabel:{textStyle:{color:'#fff',fontSize:10} },
+                axisLabel:{
+                    textStyle:{
+                        color: function(param, index) {
+                            return name_color[index];
+                        },
+                        fontSize:15
+                    }
+                 },
                 data: city_name
             },
             series: [
                 {
                     name: '里程数/公里',
                     type: 'bar',
-                    color:'#ff557f',
+                    color:'#8b27fd',
                     data: mileages
                 },
                 {
                     name: '线路数/条',
                     type: 'bar',
-                    color:'#25f3e6',
+                    color:'#e800f9',
                     data: lines
                 },
                 {
                     name: '站点数/个',
                     type: 'bar',
-                    color:'#0035f9',
+                    color:'#f1661d',
                     data: stations
                 }
             ]
@@ -407,7 +438,7 @@ $(function () {
                 {value:4, name:'华北'},
                 {value:3, name: '华中'},
                 {value:15, name: '华东'},
-                {value:6, name: '华南'},
+                {value:5, name: '华南'},
                 {value:4, name: '东北'},
                 {value:3, name: '西北'},
                 {value:3, name: '西南'},
@@ -475,7 +506,7 @@ $(function () {
                 trigger: 'item',
                 formatter: " {b} ({d}%) <br/> {a} : {c} 个"
             },
-            color: ['#0035f9', '#f36f8a', '#ffff43', '#25f3e6','#4caed3','#55ff00','#ffaaff','#e8e158'],
+            color: ['#1478fd', '#cd7f32', '#f6072a', '#25f3e6','#4caed3','#55ff00','#ffaaff','#e8e158'],
             legend: { //图例组件，颜色和名字
                 left: '65%',
                 top: '50',
@@ -576,32 +607,102 @@ $(function () {
         var pd = Object.values(province_data[year])[1];
 
         pd.forEach(function(v) {
-            var city = [];
-            if (v.city != undefined)
-            {
-                city = v.city;
-                data.push({
-                    name: v.name,
-                    value: v.value,
-                    children: city
-                });
-            }
-            else
-            {
-                data.push({
-                    name: v.name,
-                    value: v.value,
-                });
-            }
+            var province = [];
+            province = v.province;
+            var province_data = [];
+            province.forEach(function (v) {
+                var city = [];
+                if (v.city != undefined)
+                {
+                    city = v.city;
+                    province_data.push({
+                        name: v.name,
+                        value: v.value,
+                        children: city
+                    });
+                }
+                else
+                {
+                    province_data.push({
+                        name: v.name,
+                        value: v.value,
+                    });
+                }
+            });
+
+            var region_color;
+            if (v.name == "华北")
+                region_color = '#1478fd';
+            else if (v.name == "华东")
+                region_color = '#f6072a';
+            else if (v.name == "华南")
+                region_color = '#25f3e6';
+            else if (v.name == "东北")
+                region_color = '#4caed3';
+            else if (v.name == "西南")
+                region_color = '#ffaaff';
+            else if (v.name == "西北")
+                region_color = '#55ff00';
+            else if (v.name == "港澳台")
+                region_color = '#e8e158';
+            else if (v.name == "华中")
+                region_color = '#cd7f32';
+            data.push({
+                name: v.name,
+                value: v.value,
+                itemStyle: {
+                    color: region_color
+                },
+                children: province_data
+            });
 
         })
 
         //option = null;
         option = {
-            tooltip: {},
+            tooltip: {
+                formatter: function (info) {
+                    var value = info.value;
+                    var treePathInfo = info.treePathInfo;
+                    var treePath = [];
+
+                    for (var i = 1; i < treePathInfo.length; i++) {
+                        treePath.push(treePathInfo[i].name);
+                    }
+
+                    return [
+                        '<div class="tooltip-title">' + formatUtil.encodeHTML(treePath.join('/')) + '</div>',
+                        'Disk Usage: ' + formatUtil.addCommas(value) + ' KB',
+                    ].join('');
+                }
+            },
             series: [{
                 type: 'treemap',
-                data: data
+                data: data,
+                leafDepth: 2,
+                levels: [
+                    {
+                        itemStyle: {
+                            borderColor: '#555',
+                            borderWidth: 4,
+                            gapWidth: 4
+                        }
+                    },
+                    {
+                        colorSaturation: [0.3, 0.4],
+                        itemStyle: {
+                            borderColorSaturation: 0.7,
+                            gapWidth: 2,
+                            borderWidth: 2
+                        }
+                    },
+                    {
+                        itemStyle: {
+                            borderColorSaturation: 0.6,
+                            gapWidth: 1
+                        }
+                    }
+                ]
             }]
         };
         if (option && typeof option === "object") {
