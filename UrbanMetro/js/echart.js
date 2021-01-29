@@ -672,6 +672,8 @@ $(function () {
 
         })
 
+        var formatUtil = echarts.format;
+
         //option = null;
         option = {
             tooltip: {
@@ -685,8 +687,7 @@ $(function () {
                     }
 
                     return [
-                        '<div class="tooltip-title">' + formatUtil.encodeHTML(treePath.join('/')) + '</div>',
-                        'Disk Usage: ' + formatUtil.addCommas(value) + ' KB',
+                        '<div class="tooltip-title" style="margin: 0 auto">' + formatUtil.encodeHTML(treePath.join('/')) + '<br />' + '地铁线路数: ' + formatUtil.addCommas(value) + ' 条' +  '</div>'
                     ].join('');
                 }
             },
