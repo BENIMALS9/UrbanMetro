@@ -3,7 +3,7 @@
     "data": [
       {
         "name": "华北",
-        "value": 35,
+        "value": 34,
         "province": [
           {
             "name": "北京",
@@ -15,10 +15,10 @@
           },
           {
             "name": "内蒙古",
-            "value": 3,
+            "value": 2,
             "city": [{
               "name": "呼和浩特",
-              "value": 3
+              "value": 2
             }]
           },
           {
@@ -33,7 +33,7 @@
       },
       {
         "name": "华东",
-        "value": 50,
+        "value": 60,
         "province": [
           {
             "name": "上海",
@@ -209,7 +209,7 @@
       },
       {
         "name": "西南",
-        "value": 25,
+        "value": 23,
         "province": [
           {
             "name": "重庆",
@@ -233,17 +233,17 @@
           },
           {
             "name": "贵州",
-            "value": 3,
+            "value": 1,
             "city": [{
               "name": "贵阳",
-              "value": 3
+              "value": 1
             }]
           }
         ]
       },
       {
         "name": "西北",
-        "value": 9,
+        "value": 7,
         "province": [
           {
             "name": "陕西",
@@ -255,10 +255,10 @@
           },
           {
             "name": "甘肃",
-            "value": 3,
+            "value": 1,
             "city": [{
               "name": "兰州",
-              "value": 3
+              "value": 1
             }]
           },
           {
@@ -419,7 +419,7 @@
       },
       {
         "name": "华中",
-        "value": 7,
+        "value": 5,
         "province": [
           {
             "name": "湖北",
@@ -431,10 +431,10 @@
           },
           {
             "name": "湖南",
-            "value": 3,
+            "value": 1,
             "city": [{
               "name": "长沙",
-              "value": 3
+              "value": 1
             }]
           },
           {
@@ -564,7 +564,7 @@
     },
     {
       "name": "东北",
-      "value": 2,
+      "value": 3,
       "province": [
         {
           "name": "吉林",
@@ -576,9 +576,12 @@
         },
         {
           "name": "辽宁",
-          "value": 1,
+          "value": 2,
           "city": [{
             "name": "大连",
+            "value": 1
+          },{
+            "name": "沈阳",
             "value": 1
           }]
         }
