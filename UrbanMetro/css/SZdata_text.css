@@ -126,6 +126,17 @@
 .data_content .data_main .main_left div.left_1{
     /*background: url("../img/chart_1.png") no-repeat center;*/
 }
+.data_content .data_main .main_left div.left_1 .text_sum{
+    
+	text-align: center;
+    color:#ffffff;
+    font-weight: 600;
+	font-size: 15px;
+}
+.data_content .data_main .main_left div.left_1 .text_sum div:nth-child(2){
+    font-size: 15px;
+    font-weight: 600;
+}
 
 .data_content .data_main .main_left div.left_2{
     /*background: url("../img/chart_2.png") no-repeat center;*/
@@ -235,15 +246,6 @@
 }
 .data_content .data_main .main_right div.right_2 .chart_text p:nth-child(1){
     font-size: 14px;
-    font-weight: 600;
-}
-.data_content .data_main .main_right div.right_2 .text_sum{
-    text-align: center;
-    color:#ffff43;
-    font-weight: 600;
-}
-.data_content .data_main .main_right div.right_2 .text_sum div:nth-child(2){
-    font-size: 18px;
     font-weight: 600;
 }
 .data_content .data_main .main_right div:nth-child(1){

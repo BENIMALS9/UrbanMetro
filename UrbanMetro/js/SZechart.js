@@ -157,14 +157,14 @@ $(function () {
 			        itemGap: 5,
 			        textStyle: {
 			            color: '#fff',
-			            fontSize: 10
+			            fontSize: 12
 			        },
 			        selectedMode: 'multi',
 					selected:{
 						'福田区': true,
-						'罗湖区': false,
-						'盐田区':false,
-						'南山区':false,
+						'罗湖区': true,
+						'盐田区':true,
+						'南山区':true,
 						'宝安区':false,
 						'龙岗区':false,
 						'龙华区':false,
@@ -178,10 +178,10 @@ $(function () {
 					radius:'55%',
 			        indicator: [
 			            {name: '土地面积', max: 400},
-			            {name: '常住人口/万人', max:350},
-			            {name: 'GDP/万元', max: 5020},
-			            {name: '就业人口/万人', max:92},
-			            {name: '房价均价（万元/平方米）', max:9},
+			            {name: '常住人口'+'\n'+'(万元)', max:350},
+			            {name: 'GDP(万元)', max: 5020},
+			            {name: '就业人口(万元)', max:92},
+			            {name: '房价均价'+'\n'+'(万元/平方米)', max:9},
 			            {name: '地铁服务水平', max: 45}
 			        ],
 			        shape: 'circle',
@@ -189,7 +189,7 @@ $(function () {
 			        name: {
 			            textStyle: {
 			                color: 'rgb(193, 188, 185)',
-							fontSize:10
+							fontSize:11
 			            }
 			        },
 			        splitLine: {
@@ -372,7 +372,7 @@ $(function () {
 				textStyle: {color: []},
 				data: ['日均客流量/万人次','总里程数/公里']
 			},
-			color:["#ffff43","#c91e51"],
+			color:["#ececec","#8b27fd"],
 			grid: {
 				left: '3%',
 				right: '4%',
@@ -607,7 +607,7 @@ $(function () {
 				},
 				itemStyle: {
 					normal: {
-						color: '#0070f9',
+						color: '#8b27fd',
 						// barBorderRadius: 50
 					}
 				},
@@ -632,7 +632,7 @@ $(function () {
 				},
 				itemStyle: {
 					normal: {
-						color: '#25f3e6',
+						color: '#f1661d',
 						// barBorderRadius: 50
 					}
 				},
